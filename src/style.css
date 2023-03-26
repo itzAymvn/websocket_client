@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: #f2f2f2;
+    margin: 4em 0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+header a {
+    color: #000;
+    text-decoration: none;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+body .messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+body .messages .message_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: 85%;
+    margin: 0 auto;
+}
+
+body .messages .message_container.self {
+    align-items: end;
+}
+
+body .messages .message_container .message {
+    background-color: white;
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.3);
+    padding: 1em;
+    border-radius: 1em;
+    margin: 0.5em 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    gap: 0.5em;
+    max-width: 85%;
+}
+
+body .messages .message_container.self .message {
+    background-color: #0166ff;
+    color: #fff;
+}
+
+body .messages .message_container .message .message__name {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+body .messages .message_container .message .message__text {
+    font-size: 1em;
+    word-wrap: break-word;
+    word-break: break-all;
+    color: #e5e5e5;
+}
+
+body .messages .message_container .message .message__time {
+    font-size: 0.8em;
+    align-self: flex-end;
+    background-color: #f2f2f2;
+    color: #000;
+    padding: 0.5em;
+    margin-top: 3em;
+    border-radius: 0.5em;
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.3);
+}
+
+form {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    padding: 0.5em;
+    background-color: #fff;
+}
+
+form input {
+    width: 80%;
+    padding: 1em;
+    border: none;
+    border-radius: 1em;
+    outline: none;
+    font-size: 1em;
+}
+
+form button {
+    width: 7em;
+    padding: 1em;
+    border: none;
+    border-radius: 1em;
+    outline: none;
+    font-size: 1em;
+    background-color: #0166ff;
+    color: #fff;
+    cursor: pointer;
+}

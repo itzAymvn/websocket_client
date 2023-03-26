@@ -1,0 +1,5 @@
+{
+    "wss": "ws://websocketserver-oxrc.onrender.com",
+    "getMessages": "actions/get_messages.php",
+    "insertMessage": "actions/insert_message.php"
+}

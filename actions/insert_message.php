@@ -17,7 +17,7 @@ if (isset($user['id']) && isset($user['message']) && isset($user['timestamp'])) 
         $sql = "INSERT INTO $messages_table (user_id, message, created_at) VALUES (:id, :message, :created_at)";
         $stmt = $conn->prepare($sql);
         $stmt->execute(['id' => $id, 'message' => $message, 'created_at' => $timestamp]);
-        echo json_encode(['status' => 'success', 'message' => 'Message sent']);
+        echo json_encode(['status' => 'success', 'message' => 'Message sent', 'message_id' => $conn->lastInsertId()]);
     } catch (PDOException $e) {
         echo json_encode(['status' => 'error', 'message' => "It's not you, it's us. Please try again later."]);
     }

@@ -19,7 +19,8 @@ if (!isset($_SESSION['user'])) {
 
 <body>
     <header>
-        <a href="logout.php" class="logout">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
+        <a href="logout.php" class="logout"><i class="fa-solid fa-right-from-bracket"> Logout</i></a>
+        <div><span id="connected"></span> <i class="fa-solid fa-user"></i></div>
         <a href="#" class="profile" onclick="alert('Profile feature is not available yet!')">
             <?php
             echo $_SESSION['user']['name'];

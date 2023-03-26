@@ -8,7 +8,7 @@ if (!isset($_SESSION['user'])) {
 }
 
 try {
-    $query = "SELECT messages.id, messages.user_id, users.name AS user_name, messages.message, messages.created_at FROM $users_table JOIN users ON messages.user_id = users.id ORDER BY messages.created_at ASC";
+    $query = "SELECT $messages_table.id, $messages_table.user_id, $users_table.name AS user_name, $messages_table.message, $messages_table.created_at FROM $messages_table JOIN users ON $messages_table.user_id = $users_table.id ORDER BY $messages_table.created_at ASC";
     $stmt = $conn->prepare($query);
     $stmt->execute();
     $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);

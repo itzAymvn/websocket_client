@@ -19,8 +19,11 @@ if (!isset($_SESSION['user'])) {
 
 <body>
 
-
-
+    <div class="connecting_loading show" id="connecting_loading">
+        <div class="connecting_loading__content">
+            <i class="fa-solid fa-spinner"></i>
+        </div>
+    </div>
     <div class="connectedUsers" id="connectedUsers">
         <h2>
             <span>

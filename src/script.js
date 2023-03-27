@@ -20,6 +20,7 @@ const connectedCount = document.querySelector("#connected");
 
 // Function to render message
 const RenderMessage = (message_id, id, name, message, timestamp) => {
+    // Format the timestamp to a readable time "HH:MM:SS"
     const formattedTime = new Date(Number(timestamp)).toLocaleTimeString();
 
     // Create message container with the message_id as a data attribute
@@ -86,6 +87,19 @@ isLogged &&
 // Connection opened
 isLogged &&
     socket.addEventListener("open", (event) => {
+        const connecting_loading = document.querySelector(
+            "#connecting_loading"
+        );
+
+        // Decrease the opacity of the connecting loading
+        connecting_loading.style.opacity = 0;
+
+        // remove the "show" class from it
+        setTimeout(() => {
+            connecting_loading.classList.remove("show");
+        }, 500);
+
+        // Send connection data to server
         socket.send(
             JSON.stringify({
                 type: "connection",
@@ -129,7 +143,6 @@ form.addEventListener("submit", (event) => {
         headers: {
             "Content-Type": "application/json",
         },
-
         body: JSON.stringify(dataObject),
     })
         .then((response) => response.json())
@@ -199,10 +212,12 @@ isLogged &&
             }
 
             if (data.type === "connected_users") {
+                // Update connected users count and reset the users container
                 connectedCount.innerText = data.content.length;
                 const connectedUsers = document.querySelector("#users");
-                // connectedUsers.innerHTML = "";
+                connectedUsers.innerHTML = "";
 
+                // Loop through the users and refill the users container
                 data.content.forEach((user) => {
                     // Create user container
                     const userContainer = document.createElement("div");
@@ -234,6 +249,7 @@ isLogged &&
 
 // On window close send the ID of the user to the server
 window.addEventListener("unload", (event) => {
+    // Send disconnection data to server
     socket.send(
         JSON.stringify({
             type: "disconnection",
@@ -247,14 +263,17 @@ window.addEventListener("unload", (event) => {
     socket.close();
 });
 
+// Opening/Closing the connected users menu
 const connectedUsersBtn = document.querySelector("#connectedUsers__btn");
 const connectedUsers = document.querySelector("#connectedUsers");
 const close_connected_menu = document.querySelector("#close_connected_menu");
 
+// Toggle the connected users menu by clicking on the button from the header
 connectedUsersBtn.addEventListener("click", () => {
     connectedUsers.classList.toggle("show");
 });
 
+// Toggle the connected users menu by clicking on the close button (X)
 close_connected_menu.addEventListener("click", () => {
     if (connectedUsers.classList.contains("show")) {
         connectedUsers.classList.remove("show");

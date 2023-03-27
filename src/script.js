@@ -2,7 +2,8 @@
 const isLogged = user ? true : false;
 
 // Importing the config file
-import config from "./config.json" assert {type: "json"};
+const configResponse = await fetch("./src/config.json");
+const config = await configResponse.json();
 
 // Requesting permission to send notifications
 await Notification.requestPermission();

@@ -1,8 +1,8 @@
 <?php
-$host = "sql108.epizy.com";
-$user = "epiz_33873057";
-$pass = "MVJD2BauZu";
-$db = "epiz_33873057_websocket_chat";
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "websocket_chat";
 $users_table = "users";
 $messages_table = "messages";
 

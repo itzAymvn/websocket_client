@@ -2,7 +2,7 @@
 const isLogged = user ? true : false;
 
 // Importing the config file
-const configResponse = await fetch("./src/config.json");
+const configResponse = await fetch("./config.json");
 const config = await configResponse.json();
 
 // Requesting permission to send notifications
@@ -199,7 +199,35 @@ isLogged &&
             }
 
             if (data.type === "connected_users") {
-                connectedCount.innerText = data.content;
+                connectedCount.innerText = data.content.length;
+                const connectedUsers = document.querySelector("#users");
+                // connectedUsers.innerHTML = "";
+
+                data.content.forEach((user) => {
+                    // Create user container
+                    const userContainer = document.createElement("div");
+                    userContainer.classList.add("user");
+
+                    // Create user name
+                    const userName = document.createElement("div");
+                    userName.classList.add("user__name");
+                    userName.innerText = user["name"];
+
+                    // Create user status
+                    const userStatus = document.createElement("div");
+                    userStatus.classList.add("user__status");
+
+                    // Create user status icon
+                    const userStatusIcon = document.createElement("i");
+                    userStatusIcon.classList.add("fa-solid", "fa-circle");
+
+                    // Append elements to user status and user container
+                    userStatus.append(userStatusIcon);
+                    userContainer.append(userName, userStatus);
+
+                    // Append user container to DOM
+                    connectedUsers.append(userContainer);
+                });
             }
         }
     });
@@ -217,4 +245,18 @@ window.addEventListener("unload", (event) => {
 
     // Close the socket
     socket.close();
+});
+
+const connectedUsersBtn = document.querySelector("#connectedUsers__btn");
+const connectedUsers = document.querySelector("#connectedUsers");
+const close_connected_menu = document.querySelector("#close_connected_menu");
+
+connectedUsersBtn.addEventListener("click", () => {
+    connectedUsers.classList.toggle("show");
+});
+
+close_connected_menu.addEventListener("click", () => {
+    if (connectedUsers.classList.contains("show")) {
+        connectedUsers.classList.remove("show");
+    }
 });

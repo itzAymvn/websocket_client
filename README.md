@@ -15,7 +15,7 @@ _You can use [XAMPP](https://www.apachefriends.org/index.html) to install PHP an
 2. Create a database and these import the tables from the `database.sql` file
 3. Make sure the database credentials are correct in the `/db/dbConnect.php` file
 4. Have the [websocket server](https://github.com/itzAymvn/websocket_server) running (Not necessary in the same machine)
-5. Update the `/src/config.json` file with the correct websocket server URL
+5. Update the `config.json` file with the correct websocket server URL
 
 ## Usage
 

@@ -107,6 +107,7 @@ isLogged &&
                     id: user["id"],
                     name: user["name"],
                     created_at: user["created_at"],
+                    image: user["image"],
                 },
             })
         );
@@ -216,12 +217,20 @@ isLogged &&
                 connectedCount.innerText = data.content.length;
                 const connectedUsers = document.querySelector("#users");
                 connectedUsers.innerHTML = "";
-
-                // Loop through the users and refill the users container
                 data.content.forEach((user) => {
                     // Create user container
                     const userContainer = document.createElement("div");
                     userContainer.classList.add("user");
+
+                    // Create user image
+                    const userImage = document.createElement("img");
+                    userImage.classList.add("user__image");
+
+                    if (user["image"] !== null) {
+                        userImage.src = "image.php?filename=" + user["image"];
+                    } else {
+                        userImage.src = "./public/images/default.jpg";
+                    }
 
                     // Create user name
                     const userName = document.createElement("div");
@@ -238,7 +247,7 @@ isLogged &&
 
                     // Append elements to user status and user container
                     userStatus.append(userStatusIcon);
-                    userContainer.append(userName, userStatus);
+                    userContainer.append(userImage, userName, userStatus);
 
                     // Append user container to DOM
                     connectedUsers.append(userContainer);

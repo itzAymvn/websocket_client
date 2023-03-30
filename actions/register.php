@@ -17,9 +17,10 @@ if (isset($_POST['register'])) {
         header('Location: ../register.php?error=user_exists');
     } else {
         // Insert new user
-        $query = $conn->prepare("INSERT INTO $users_table (`name`, password) VALUES (:name, :password)");
+        $query = $conn->prepare("INSERT INTO $users_table (`name`, password, created_at) VALUES (:name, :password, :created_at)");
         $query->bindParam(':name', $username);
         $query->bindParam(':password', password_hash($password, PASSWORD_DEFAULT));
+        $query->bindParam(':created_at', time());
         $query->execute();
         header('Location: ../login.php');
     }
